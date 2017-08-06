@@ -26,5 +26,6 @@ namespace PortfolioManager.Controllers
 
             return View();
         }
+
     }
 }

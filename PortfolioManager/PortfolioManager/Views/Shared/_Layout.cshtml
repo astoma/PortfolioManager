@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    <title>@ViewBag.Title - Citi Portfolio Manage</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -18,23 +18,39 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                <div class = "navbar-brand" >CitiPortfolioManager</div>
+             </div>
+            @Html.Partial("_LoginPartial")
+            <ul class="nav navbar-nav">
+                @*<li class="dropdown">
+
+                    @Html.ActionLink("Securities", "Index", "Home", new { area = "<span class='caret'></span>" }, new { style = "font-size: 18px", @class = "dropdown-toggle", data_toggle = "dropdown", role = "button", aria_haspopup = "true", aria_expanded = "false" })
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            @Html.ActionLink("Manage Market", "About", "Home")
+                        </li>
+                        <li>
+                            <a href="#">Update price</a>
+                        </li>
+                    </ul>
+
+                </li>*@
+                <li>@Html.ActionLink("Portfolio", "Index", "Home")</li>
+                <li>@Html.ActionLink("Securities", "Index", "Securities")</li> 
+                <li>@Html.ActionLink("Fund Manager", "Index", "FundManager")</li>
+                <li>@Html.ActionLink("About", "Index", "About")</li>
+                <li>@Html.ActionLink("Support", "Index", "Support")</li>
+            </ul>
         </div>
     </div>
+   
     <div class="container body-content">
         @RenderBody()
         <hr />
+        <br />
         <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+            <p>&copy; @DateTime.Now.Year -CITI</p>
         </footer>
     </div>
 
