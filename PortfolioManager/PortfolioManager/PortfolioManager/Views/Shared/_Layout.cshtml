@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Citi Portfolio Manage</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class = "navbar-brand" >CitiPortfolioManager</div>
+             </div>
+            @Html.Partial("_LoginPartial")
+            <ul class="nav navbar-nav">
+                @*<li class="dropdown">
+
+                    @Html.ActionLink("Securities", "Index", "Home", new { area = "<span class='caret'></span>" }, new { style = "font-size: 18px", @class = "dropdown-toggle", data_toggle = "dropdown", role = "button", aria_haspopup = "true", aria_expanded = "false" })
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            @Html.ActionLink("Manage Market", "About", "Home")
+                        </li>
+                        <li>
+                            <a href="#">Update price</a>
+                        </li>
+                    </ul>
+
+                </li>*@
+                <li>@Html.ActionLink("Portfolio", "Index", "Home")</li>
+                <li>@Html.ActionLink("Securities", "Index", "Securities")</li> 
+                <li>@Html.ActionLink("Fund Manager", "Index", "FundManager")</li>
+                <li>@Html.ActionLink("About", "Index", "About")</li>
+                <li>@Html.ActionLink("Support", "Index", "Support")</li>
+            </ul>
+        </div>
+    </div>
+   
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <br />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -CITI</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
