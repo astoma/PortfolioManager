@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PortfolioManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BOND">
+    <Key>
+      <PropertyRef Name="BondIssuer" />
+    </Key>
+    <Property Name="BondIssuer" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Coupon" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="MaturityMonth" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaturityYear" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PortfolioManager.dbo.BONDPRICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BONDPRICE">
+    <Key>
+      <PropertyRef Name="BondIssuer" />
+      <PropertyRef Name="BondPrice" />
+      <PropertyRef Name="ExDate" />
+    </Key>
+    <Property Name="BondIssuer" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="BondPrice" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="ExDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PortfolioManager.dbo.CURRENCY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CURRENCY">
+    <Key>
+      <PropertyRef Name="ISO" />
+      <PropertyRef Name="CurrencyName" />
+    </Key>
+    <Property Name="ISO" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CurrencyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PortfolioManager.dbo.EQUITY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EQUITY">
+    <Key>
+      <PropertyRef Name="EquitySymbol" />
+      <PropertyRef Name="EquityName" />
+      <PropertyRef Name="Exchange" />
+    </Key>
+    <Property Name="EquitySymbol" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="EquityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IPOYear" Type="int" />
+    <Property Name="Sector" Type="nvarchar" MaxLength="50" />
+    <Property Name="Industry" Type="nvarchar" MaxLength="100" />
+    <Property Name="SummaryQuote" Type="nvarchar" MaxLength="100" />
+    <Property Name="Exchange" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PortfolioManager.dbo.EQUITYPRICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EQUITYPRICE">
+    <Key>
+      <PropertyRef Name="EquitySymbol" />
+      <PropertyRef Name="LastSale" />
+      <PropertyRef Name="ExDate" />
+    </Key>
+    <Property Name="EquitySymbol" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LastSale" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="MarketCap" Type="numeric" Precision="18" Scale="4" />
+    <Property Name="ExDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FUND">
+    <Key>
+      <PropertyRef Name="FundId" />
+    </Key>
+    <Property Name="FundId" Type="int" Nullable="false" />
+    <Property Name="FundName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FundManagerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FUNDPRICE">
+    <Key>
+      <PropertyRef Name="FundId" />
+    </Key>
+    <Property Name="FundId" Type="int" Nullable="false" />
+    <Property Name="FundPrice" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PortfolioManager.dbo.FUTURE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="FUTURE">
+    <Key>
+      <PropertyRef Name="FutureId" />
+      <PropertyRef Name="Exchange" />
+      <PropertyRef Name="FutureSymbol" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="MaturityDate" />
+      <PropertyRef Name="ClrAlias" />
+    </Key>
+    <Property Name="FutureId" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Exchange" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FutureSymbol" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaturityDate" Type="datetime" Nullable="false" />
+    <Property Name="ClrAlias" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PortfolioManager.dbo.POSITION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="POSITION">
+    <Key>
+      <PropertyRef Name="FundId" />
+      <PropertyRef Name="SecurityId" />
+      <PropertyRef Name="Propotion" />
+    </Key>
+    <Property Name="FundId" Type="int" Nullable="false" />
+    <Property Name="SecurityId" Type="int" Nullable="false" />
+    <Property Name="Propotion" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="PortfolioManagerModelStoreContainer">
+    <EntitySet Name="BOND" EntityType="Self.BOND" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FUND" EntityType="Self.FUND" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FUNDPRICE" EntityType="Self.FUNDPRICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BONDPRICE" EntityType="Self.BONDPRICE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BONDPRICE].[BondIssuer] AS [BondIssuer], 
+    [BONDPRICE].[BondPrice] AS [BondPrice], 
+    [BONDPRICE].[ExDate] AS [ExDate]
+    FROM [dbo].[BONDPRICE] AS [BONDPRICE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CURRENCY" EntityType="Self.CURRENCY" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CURRENCY].[ISO] AS [ISO], 
+    [CURRENCY].[CurrencyName] AS [CurrencyName]
+    FROM [dbo].[CURRENCY] AS [CURRENCY]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EQUITY" EntityType="Self.EQUITY" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EQUITY].[EquitySymbol] AS [EquitySymbol], 
+    [EQUITY].[EquityName] AS [EquityName], 
+    [EQUITY].[IPOYear] AS [IPOYear], 
+    [EQUITY].[Sector] AS [Sector], 
+    [EQUITY].[Industry] AS [Industry], 
+    [EQUITY].[SummaryQuote] AS [SummaryQuote], 
+    [EQUITY].[Exchange] AS [Exchange]
+    FROM [dbo].[EQUITY] AS [EQUITY]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EQUITYPRICE" EntityType="Self.EQUITYPRICE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EQUITYPRICE].[EquitySymbol] AS [EquitySymbol], 
+    [EQUITYPRICE].[LastSale] AS [LastSale], 
+    [EQUITYPRICE].[MarketCap] AS [MarketCap], 
+    [EQUITYPRICE].[ExDate] AS [ExDate]
+    FROM [dbo].[EQUITYPRICE] AS [EQUITYPRICE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="FUTURE" EntityType="Self.FUTURE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [FUTURE].[FutureId] AS [FutureId], 
+    [FUTURE].[Exchange] AS [Exchange], 
+    [FUTURE].[FutureSymbol] AS [FutureSymbol], 
+    [FUTURE].[Description] AS [Description], 
+    [FUTURE].[MaturityDate] AS [MaturityDate], 
+    [FUTURE].[ClrAlias] AS [ClrAlias]
+    FROM [dbo].[FUTURE] AS [FUTURE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="POSITION" EntityType="Self.POSITION" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [POSITION].[FundId] AS [FundId], 
+    [POSITION].[SecurityId] AS [SecurityId], 
+    [POSITION].[Propotion] AS [Propotion]
+    FROM [dbo].[POSITION] AS [POSITION]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,80 @@
+﻿@model PortfolioManager.Models.FUTURE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FUTURE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FutureId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FutureId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exchange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exchange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Symbol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Symbol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClrAlias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClrAlias)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

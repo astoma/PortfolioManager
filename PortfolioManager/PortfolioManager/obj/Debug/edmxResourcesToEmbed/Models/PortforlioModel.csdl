@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PortfolioManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FUND">
+    <Key>
+      <PropertyRef Name="FundId" />
+    </Key>
+    <Property Name="FundId" Type="Int32" Nullable="false" />
+    <Property Name="FundName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FundManagerId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FUNDPRICE">
+    <Key>
+      <PropertyRef Name="FundId" />
+    </Key>
+    <Property Name="FundId" Type="Int32" Nullable="false" />
+    <Property Name="FundPrice1" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BOND">
+    <Key>
+      <PropertyRef Name="BondIssuer" />
+      <PropertyRef Name="Coupon" />
+      <PropertyRef Name="MaturityMonth" />
+      <PropertyRef Name="MaturityYear" />
+    </Key>
+    <Property Name="BondIssuer" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Coupon" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="MaturityMonth" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaturityYear" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BONDPRICE">
+    <Key>
+      <PropertyRef Name="BondIssuer" />
+      <PropertyRef Name="BondPrice1" />
+      <PropertyRef Name="ExDate" />
+    </Key>
+    <Property Name="BondIssuer" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BondPrice1" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="ExDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="CURRENCY">
+    <Key>
+      <PropertyRef Name="ISO" />
+      <PropertyRef Name="CurrencyName" />
+    </Key>
+    <Property Name="ISO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EQUITY">
+    <Key>
+      <PropertyRef Name="EquitySymbol" />
+      <PropertyRef Name="EquityName" />
+      <PropertyRef Name="Exchange" />
+    </Key>
+    <Property Name="EquitySymbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EquityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IPOYear" Type="Int32" />
+    <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Industry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SummaryQuote" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Exchange" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EQUITYPRICE">
+    <Key>
+      <PropertyRef Name="EquitySymbol" />
+      <PropertyRef Name="LastSale" />
+      <PropertyRef Name="ExDate" />
+    </Key>
+    <Property Name="EquitySymbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastSale" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="MarketCap" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="ExDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="FUTURE">
+    <Key>
+      <PropertyRef Name="FutureId" />
+      <PropertyRef Name="Exchange" />
+      <PropertyRef Name="FutureSymbol" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="MaturityDate" />
+      <PropertyRef Name="ClrAlias" />
+    </Key>
+    <Property Name="FutureId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Exchange" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FutureSymbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaturityDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ClrAlias" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POSITION">
+    <Key>
+      <PropertyRef Name="FundId" />
+      <PropertyRef Name="SecurityId" />
+      <PropertyRef Name="Propotion" />
+    </Key>
+    <Property Name="FundId" Type="Int32" Nullable="false" />
+    <Property Name="SecurityId" Type="Int32" Nullable="false" />
+    <Property Name="Propotion" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PortfolioManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FUND" EntityType="Self.FUND" />
+    <EntitySet Name="FUNDPRICE" EntityType="Self.FUNDPRICE" />
+    <EntitySet Name="USER" EntityType="Self.USER" />
+    <EntitySet Name="BOND" EntityType="Self.BOND" />
+    <EntitySet Name="BONDPRICE" EntityType="Self.BONDPRICE" />
+    <EntitySet Name="CURRENCY" EntityType="Self.CURRENCY" />
+    <EntitySet Name="EQUITY" EntityType="Self.EQUITY" />
+    <EntitySet Name="EQUITYPRICE" EntityType="Self.EQUITYPRICE" />
+    <EntitySet Name="FUTURE" EntityType="Self.FUTURE" />
+    <EntitySet Name="POSITION" EntityType="Self.POSITION" />
+    <EntitySet Name="sysdiagrams" EntityType="PortfolioManagerModel.sysdiagrams" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PortfolioManagerModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PortfolioManagerModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

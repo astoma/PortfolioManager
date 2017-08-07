@@ -1,0 +1,74 @@
+﻿@model PortfolioManager.Models.POSITION
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>POSITION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BOND.Issuer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BOND.Issuer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EQUITY.Symbol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EQUITY.Symbol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FUTURE.FutureId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FUTURE.FutureId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PORTFOLIO.PortfolioName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PORTFOLIO.PortfolioName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRICE.SecurityId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRICE.SecurityId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PositionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
