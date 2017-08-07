@@ -200,3 +200,6 @@ E:\CitiPortforlio\PortfolioManager\PortfolioManager\PortfolioManager\bin\zh-Hans
 E:\CitiPortforlio\PortfolioManager\PortfolioManager\PortfolioManager\obj\Debug\PortfolioManager.csprojResolveAssemblyReference.cache
 E:\CitiPortforlio\PortfolioManager\PortfolioManager\PortfolioManager\obj\Debug\PortfolioManager.dll
 E:\CitiPortforlio\PortfolioManager\PortfolioManager\PortfolioManager\obj\Debug\PortfolioManager.pdb
+E:\citi\code\PortfolioManager\PortfolioManager\PortfolioManager\obj\Debug\PortfolioManager.csprojResolveAssemblyReference.cache
+E:\citi\code\PortfolioManager\PortfolioManager\PortfolioManager\obj\Debug\PortfolioManager.dll
+E:\citi\code\PortfolioManager\PortfolioManager\PortfolioManager\obj\Debug\PortfolioManager.pdb
