@@ -1,42 +1,156 @@
 ﻿@{
     ViewBag.Title = "Securities";
 }
+
+<style type="text/css"> 
+    .Content-Body
+    {
+        width:100%;
+    }
+</style>
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+<div class="Content-Body">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#equity" data-toggle="tab">Equity</a></li>
+        <li><a href="#bond" data-toggle="tab"> Bond </a></li>
+        <li><a href="#future" data-toggle="tab">Future</a></li>
 
-<div class="col-md-6">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>twitter</td>
-            </tr>
-        </tbody>
-    </table>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade  in active" id="equity">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th>equity</th>
+
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>LastSale</th>
+                            <th>MarketCap</th>
+                            <th>IPOYear</th>
+                            <th>Sector</th>
+                            <th>Industry</th>
+                            <th>Summary Quote</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>			
+
+                            <td>DDD</td>
+                            <td>3D Systems Corporation</td>
+                            <td>13.47</td>
+                            <td>$1.53B</td>
+                            
+                            <td>n/a</td>
+                            <td>Technology</td>
+                            <td>Computer Software: Prepackaged Software</td>
+                            <td>http://www.nasdaq.com/symbol/ddd</td>
+
+                  
+                        </tr>
+                        <tr>
+                            <td>2</td>
+
+                            <td>DDD</td>
+                            <td>3D Systems Corporation</td>
+                            <td>13.47</td>
+                            <td>$1.53B</td>
+
+                            <td>n/a</td>
+                            <td>Technology</td>
+                            <td>Computer Software: Prepackaged Software</td>
+                            <td>http://www.nasdaq.com/symbol/ddd</td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+
+        <div class="tab-pane fade" id="bond">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>bond</th>
+                        <th>Issuer</th>
+                        <th>Coupon</th>
+                        <th>Maturity Month</th>
+                        <th>Maturity Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+
+                        PIH	2.5	JAN	2020
+
+                        <td>PIH</td>
+                        <td>2.5</td>
+                        <td>JAN</td>
+                        <td>2020</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+
+                        <td>PIH</td>
+                        <td>2.5</td>
+                        <td>JAN</td>
+                        <td>2020</td>
+                      
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="future">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>future</th>
+
+                        <th>ID</th>
+                        <th>Exch</th>
+                        <th>Sym</th>
+                        <th>Desc</th>
+                        <th>SecType</th>
+                        <th>Match Date</th>
+                        <th>UOMQty</th>
+                        <th>ClrAlias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+
+                        <td>48</td>
+                        <td>CME</td>
+                        <td>LE</td>
+                        <td>LIVE CATTLE FUTURES</td>
+                        <td>FUT</td>
+                        <td>2017/4/28</td>
+                        <td>40000</td>
+                        <td>LC 201704</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>48</td>
+                        <td>CME</td>
+                        <td>LE</td>
+                        <td>LIVE CATTLE FUTURES</td>
+                        <td>FUT</td>
+                        <td>2017/4/28</td>
+                        <td>40000</td>
+                        <td>LC 201704</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+    </div>
+
+
 </div>
-
-
 
 
