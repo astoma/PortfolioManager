@@ -201,7 +201,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BondController.cs" />
     <Compile Include="Controllers\EquityController.cs" />
-    <Compile Include="Controllers\FundManagerController.cs" />
     <Compile Include="Controllers\FutureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
