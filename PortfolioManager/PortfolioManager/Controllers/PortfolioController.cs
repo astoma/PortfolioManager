@@ -13,5 +13,10 @@ namespace PortfolioManager.Controllers
         {
             return View();
         }
+
+        public ActionResult EditPortfolio()
+        {
+            return View();
+        }
     }
 }

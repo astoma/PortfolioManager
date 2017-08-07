@@ -197,7 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\FundManagerController.cs" />
+    <Compile Include="Controllers\PortfolioManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
@@ -286,8 +286,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Securities\Index.cshtml" />
-    <Content Include="Views\FundManager\Index.cshtml" />
+    <Content Include="Views\PortfolioManager\Index.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
+    <Content Include="Views\Portfolio\EditPortfolio.cshtml" />
+    <Content Include="Views\Shared\_PortfolioManager.cshtml" />
+    <Content Include="Views\PortfolioManager\PortfolioMaintainance.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

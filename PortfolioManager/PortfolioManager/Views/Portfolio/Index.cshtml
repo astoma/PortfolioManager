@@ -16,18 +16,19 @@
             <th>FundSize</th>
             <th>Manager</th>
             <th>Profit</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1</td>
-            <td>易方达基金易理财</td>
+            <td>1</td> 
+            <td class="btn" data-toggle="modal" data-target="#myModal"><a href="#">易方达基金易理财</a></td>
             <td>000359</td>
             <td>货币市场基金</td>
             <td>215.79亿</td>
             <td>石大怿</td>
             <td>+4.3140%</td>
-
+            <td><a href="/Portfolio/EditPortfolio"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
         </tr>
         <tr>
             <td>2</td>
@@ -37,10 +38,64 @@
             <td>215.79亿</td>
             <td>石大怿</td>
             <td>+4.3140%</td>
+            <td><a href="#"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
         </tr>
     </tbody>
 </table>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    一、 第四季度总体基金资产配置
+                    本季度易方达易理财货币市场基金的银行存款和结算备付金比例为48.456%，债券比例为22.30%，买入返售金融资产比例为28.86%，其他资产比例为0.39%。
+                </p>
+                <p>
+                    二、 第四季度持有的前10大债券
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>债券代码</th>
+                            <th>债券名称	</th>
+                            <th>占基金资产净值比例(%)</th>
+                            <th>评级</th>
+                            <th>评级机构</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>111610662</td>
+                            <td>16兴业CD662</td>
+                            <td>	6.34</td>
+                            <td>AAA</td>
+                            <td>上海新世纪</td>
+                        </tr>
 
+                        <tr>
+                            <td>2</td>
+                            <td>111609501</td>
+                            <td>16浦发CD501</td>
+                            <td>2.72</td>
+                            <td>AAA</td>
+                            <td>上海新世纪</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
