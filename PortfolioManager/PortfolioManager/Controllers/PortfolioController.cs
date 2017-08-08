@@ -12,7 +12,7 @@ namespace PortfolioManager.Controllers
 {
     public class PortfolioController : Controller
     {
-        private PortfolioEntities db = new PortfolioEntities();
+        private PortfolioManagerEntity db = new PortfolioManagerEntity();
 
         // GET: Portfolio
         public ActionResult Index()

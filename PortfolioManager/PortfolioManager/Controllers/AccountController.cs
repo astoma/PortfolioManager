@@ -15,7 +15,7 @@ namespace PortfolioManager.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private PortfolioEntities db = new PortfolioEntities();
+        private PortfolioManagerEntity db = new PortfolioManagerEntity();
 
 
         public AccountController()

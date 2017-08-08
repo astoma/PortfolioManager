@@ -18,6 +18,7 @@ namespace PortfolioManager.Models
         public FUTURE()
         {
             this.POSITION = new HashSet<POSITION>();
+            this.PRICE = new HashSet<PRICE>();
         }
     
         public string FutureId { get; set; }
@@ -31,5 +32,7 @@ namespace PortfolioManager.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<POSITION> POSITION { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRICE> PRICE { get; set; }
     }
 }

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PortfolioModelStoreContainer" CdmEntityContainer="PortfolioManagerEntity">
+    <EntitySetMapping Name="BOND">
+      <EntityTypeMapping TypeName="PortfolioModel.BOND">
+        <MappingFragment StoreEntitySet="BOND">
+          <ScalarProperty Name="Issuer" ColumnName="Issuer" />
+          <ScalarProperty Name="Coupon" ColumnName="Coupon" />
+          <ScalarProperty Name="MatMonth" ColumnName="MatMonth" />
+          <ScalarProperty Name="MatYear" ColumnName="MatYear" />
+          <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EQUITY">
+      <EntityTypeMapping TypeName="PortfolioModel.EQUITY">
+        <MappingFragment StoreEntitySet="EQUITY">
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IPOyear" ColumnName="IPOyear" />
+          <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+          <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+          <ScalarProperty Name="Quote" ColumnName="Quote" />
+          <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FUTURE">
+      <EntityTypeMapping TypeName="PortfolioModel.FUTURE">
+        <MappingFragment StoreEntitySet="FUTURE">
+          <ScalarProperty Name="FutureId" ColumnName="FutureId" />
+          <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MatDate" ColumnName="MatDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ClrAlias" ColumnName="ClrAlias" />
+          <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INDUSTRY">
+      <EntityTypeMapping TypeName="PortfolioModel.INDUSTRY">
+        <MappingFragment StoreEntitySet="INDUSTRY">
+          <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+          <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PORTFOLIO">
+      <EntityTypeMapping TypeName="PortfolioModel.PORTFOLIO">
+        <MappingFragment StoreEntitySet="PORTFOLIO">
+          <ScalarProperty Name="PortfolioName" ColumnName="PortfolioName" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSITION">
+      <EntityTypeMapping TypeName="PortfolioModel.POSITION">
+        <MappingFragment StoreEntitySet="POSITION">
+          <ScalarProperty Name="PositionType" ColumnName="PositionType" />
+          <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+          <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRICE">
+      <EntityTypeMapping TypeName="PortfolioModel.PRICE">
+        <MappingFragment StoreEntitySet="PRICE">
+          <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SecurityType" ColumnName="SecurityType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SECTOR">
+      <EntityTypeMapping TypeName="PortfolioModel.SECTOR">
+        <MappingFragment StoreEntitySet="SECTOR">
+          <ScalarProperty Name="SectorName" ColumnName="SectorName" />
+          <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER">
+      <EntityTypeMapping TypeName="PortfolioModel.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

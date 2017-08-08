@@ -24,6 +24,5 @@ namespace PortfolioManager.Models
         public virtual EQUITY EQUITY { get; set; }
         public virtual FUTURE FUTURE { get; set; }
         public virtual PORTFOLIO PORTFOLIO { get; set; }
-        public virtual PRICE PRICE { get; set; }
     }
 }

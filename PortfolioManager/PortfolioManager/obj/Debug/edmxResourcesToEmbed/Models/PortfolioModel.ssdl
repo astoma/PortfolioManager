@@ -63,11 +63,14 @@
   <EntityType Name="PRICE">
     <Key>
       <PropertyRef Name="SecurityId" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="SecurityType" />
     </Key>
     <Property Name="SecurityId" Type="int" Nullable="false" />
     <Property Name="BidPrice" Type="numeric" Precision="18" Scale="3" Nullable="false" />
     <Property Name="OfferPrice" Type="numeric" Precision="18" Scale="3" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="SecurityType" Type="nvarchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="SECTOR">
     <Key>
@@ -171,14 +174,38 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_POSITION_PRICE">
-    <End Role="PRICE" Type="Self.PRICE" Multiplicity="1" />
-    <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+  <Association Name="FK_PRICE_BOND">
+    <End Role="BOND" Type="Self.BOND" Multiplicity="1" />
+    <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PRICE">
+      <Principal Role="BOND">
         <PropertyRef Name="SecurityId" />
       </Principal>
-      <Dependent Role="POSITION">
+      <Dependent Role="PRICE">
+        <PropertyRef Name="SecurityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRICE_EQUITY">
+    <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="1" />
+    <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EQUITY">
+        <PropertyRef Name="SecurityId" />
+      </Principal>
+      <Dependent Role="PRICE">
+        <PropertyRef Name="SecurityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRICE_FUTURE">
+    <End Role="FUTURE" Type="Self.FUTURE" Multiplicity="1" />
+    <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FUTURE">
+        <PropertyRef Name="SecurityId" />
+      </Principal>
+      <Dependent Role="PRICE">
         <PropertyRef Name="SecurityId" />
       </Dependent>
     </ReferentialConstraint>
@@ -221,9 +248,17 @@
       <End Role="PORTFOLIO" EntitySet="PORTFOLIO" />
       <End Role="POSITION" EntitySet="POSITION" />
     </AssociationSet>
-    <AssociationSet Name="FK_POSITION_PRICE" Association="Self.FK_POSITION_PRICE">
+    <AssociationSet Name="FK_PRICE_BOND" Association="Self.FK_PRICE_BOND">
+      <End Role="BOND" EntitySet="BOND" />
       <End Role="PRICE" EntitySet="PRICE" />
-      <End Role="POSITION" EntitySet="POSITION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRICE_EQUITY" Association="Self.FK_PRICE_EQUITY">
+      <End Role="EQUITY" EntitySet="EQUITY" />
+      <End Role="PRICE" EntitySet="PRICE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRICE_FUTURE" Association="Self.FK_PRICE_FUTURE">
+      <End Role="FUTURE" EntitySet="FUTURE" />
+      <End Role="PRICE" EntitySet="PRICE" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

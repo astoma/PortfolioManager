@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PortfolioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOND">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+          </Key>
+          <Property Name="Issuer" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Coupon" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MatMonth" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MatYear" Type="int" Nullable="false" />
+          <Property Name="SecurityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EQUITY">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+          </Key>
+          <Property Name="Symbol" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IPOyear" Type="int" />
+          <Property Name="SectorId" Type="int" Nullable="false" />
+          <Property Name="IndustryId" Type="int" Nullable="false" />
+          <Property Name="Quote" Type="nvarchar" MaxLength="100" />
+          <Property Name="SecurityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FUTURE">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+          </Key>
+          <Property Name="FutureId" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Exchange" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MatDate" Type="date" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="ClrAlias" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SecurityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INDUSTRY">
+          <Key>
+            <PropertyRef Name="IndustryId" />
+          </Key>
+          <Property Name="IndustryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IndustryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PORTFOLIO">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="PortfolioName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ManagerId" Type="int" Nullable="false" />
+          <Property Name="PortfolioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POSITION">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SecurityId" Type="int" Nullable="false" />
+          <Property Name="PortfolioId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRICE">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="SecurityType" />
+          </Key>
+          <Property Name="SecurityId" Type="int" Nullable="false" />
+          <Property Name="BidPrice" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="OfferPrice" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="SecurityType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SECTOR">
+          <Key>
+            <PropertyRef Name="SectorId" />
+          </Key>
+          <Property Name="SectorName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SectorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="numeric" Precision="11" Scale="0" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EQUITY_INDUSTRY">
+          <End Role="INDUSTRY" Type="Self.INDUSTRY" Multiplicity="1" />
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INDUSTRY">
+              <PropertyRef Name="IndustryId" />
+            </Principal>
+            <Dependent Role="EQUITY">
+              <PropertyRef Name="IndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUITY_SECTOR">
+          <End Role="SECTOR" Type="Self.SECTOR" Multiplicity="1" />
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SECTOR">
+              <PropertyRef Name="SectorId" />
+            </Principal>
+            <Dependent Role="EQUITY">
+              <PropertyRef Name="SectorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PORTFOLIO_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="PORTFOLIO" Type="Self.PORTFOLIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PORTFOLIO">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_BOND">
+          <End Role="BOND" Type="Self.BOND" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOND">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_EQUITY">
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUITY">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_FUTURE">
+          <End Role="FUTURE" Type="Self.FUTURE" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUTURE">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_PORTFOLIO">
+          <End Role="PORTFOLIO" Type="Self.PORTFOLIO" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTFOLIO">
+              <PropertyRef Name="PortfolioId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="PortfolioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_BOND">
+          <End Role="BOND" Type="Self.BOND" Multiplicity="1" />
+          <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOND">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="PRICE">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_EQUITY">
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="1" />
+          <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUITY">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="PRICE">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_FUTURE">
+          <End Role="FUTURE" Type="Self.FUTURE" Multiplicity="1" />
+          <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUTURE">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="PRICE">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PortfolioModelStoreContainer">
+          <EntitySet Name="BOND" EntityType="Self.BOND" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EQUITY" EntityType="Self.EQUITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FUTURE" EntityType="Self.FUTURE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INDUSTRY" EntityType="Self.INDUSTRY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PORTFOLIO" EntityType="Self.PORTFOLIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSITION" EntityType="Self.POSITION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRICE" EntityType="Self.PRICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SECTOR" EntityType="Self.SECTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EQUITY_INDUSTRY" Association="Self.FK_EQUITY_INDUSTRY">
+            <End Role="INDUSTRY" EntitySet="INDUSTRY" />
+            <End Role="EQUITY" EntitySet="EQUITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUITY_SECTOR" Association="Self.FK_EQUITY_SECTOR">
+            <End Role="SECTOR" EntitySet="SECTOR" />
+            <End Role="EQUITY" EntitySet="EQUITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PORTFOLIO_USER" Association="Self.FK_PORTFOLIO_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PORTFOLIO" EntitySet="PORTFOLIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_BOND" Association="Self.FK_POSITION_BOND">
+            <End Role="BOND" EntitySet="BOND" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_EQUITY" Association="Self.FK_POSITION_EQUITY">
+            <End Role="EQUITY" EntitySet="EQUITY" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_FUTURE" Association="Self.FK_POSITION_FUTURE">
+            <End Role="FUTURE" EntitySet="FUTURE" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_PORTFOLIO" Association="Self.FK_POSITION_PORTFOLIO">
+            <End Role="PORTFOLIO" EntitySet="PORTFOLIO" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRICE_BOND" Association="Self.FK_PRICE_BOND">
+            <End Role="BOND" EntitySet="BOND" />
+            <End Role="PRICE" EntitySet="PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRICE_EQUITY" Association="Self.FK_PRICE_EQUITY">
+            <End Role="EQUITY" EntitySet="EQUITY" />
+            <End Role="PRICE" EntitySet="PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRICE_FUTURE" Association="Self.FK_PRICE_FUTURE">
+            <End Role="FUTURE" EntitySet="FUTURE" />
+            <End Role="PRICE" EntitySet="PRICE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PortfolioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOND">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+          </Key>
+          <Property Name="Issuer" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Coupon" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MatMonth" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MatYear" Type="Int32" Nullable="false" />
+          <Property Name="SecurityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_BOND" FromRole="BOND" ToRole="POSITION" />
+          <NavigationProperty Name="PRICE" Relationship="Self.FK_PRICE_BOND" FromRole="BOND" ToRole="PRICE" />
+        </EntityType>
+        <EntityType Name="EQUITY">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+          </Key>
+          <Property Name="Symbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IPOyear" Type="Int32" />
+          <Property Name="SectorId" Type="Int32" Nullable="false" />
+          <Property Name="IndustryId" Type="Int32" Nullable="false" />
+          <Property Name="Quote" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="INDUSTRY" Relationship="Self.FK_EQUITY_INDUSTRY" FromRole="EQUITY" ToRole="INDUSTRY" />
+          <NavigationProperty Name="SECTOR" Relationship="Self.FK_EQUITY_SECTOR" FromRole="EQUITY" ToRole="SECTOR" />
+          <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_EQUITY" FromRole="EQUITY" ToRole="POSITION" />
+          <NavigationProperty Name="PRICE" Relationship="Self.FK_PRICE_EQUITY" FromRole="EQUITY" ToRole="PRICE" />
+        </EntityType>
+        <EntityType Name="FUTURE">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+          </Key>
+          <Property Name="FutureId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Exchange" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MatDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="ClrAlias" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecurityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_FUTURE" FromRole="FUTURE" ToRole="POSITION" />
+          <NavigationProperty Name="PRICE" Relationship="Self.FK_PRICE_FUTURE" FromRole="FUTURE" ToRole="PRICE" />
+        </EntityType>
+        <EntityType Name="INDUSTRY">
+          <Key>
+            <PropertyRef Name="IndustryId" />
+          </Key>
+          <Property Name="IndustryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IndustryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EQUITY" Relationship="Self.FK_EQUITY_INDUSTRY" FromRole="INDUSTRY" ToRole="EQUITY" />
+        </EntityType>
+        <EntityType Name="PORTFOLIO">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="PortfolioName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ManagerId" Type="Int32" Nullable="false" />
+          <Property Name="PortfolioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_PORTFOLIO_USER" FromRole="PORTFOLIO" ToRole="USER" />
+          <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_PORTFOLIO" FromRole="PORTFOLIO" ToRole="POSITION" />
+        </EntityType>
+        <EntityType Name="POSITION">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecurityId" Type="Int32" Nullable="false" />
+          <Property Name="PortfolioId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BOND" Relationship="Self.FK_POSITION_BOND" FromRole="POSITION" ToRole="BOND" />
+          <NavigationProperty Name="EQUITY" Relationship="Self.FK_POSITION_EQUITY" FromRole="POSITION" ToRole="EQUITY" />
+          <NavigationProperty Name="FUTURE" Relationship="Self.FK_POSITION_FUTURE" FromRole="POSITION" ToRole="FUTURE" />
+          <NavigationProperty Name="PORTFOLIO" Relationship="Self.FK_POSITION_PORTFOLIO" FromRole="POSITION" ToRole="PORTFOLIO" />
+        </EntityType>
+        <EntityType Name="PRICE">
+          <Key>
+            <PropertyRef Name="SecurityId" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="SecurityType" />
+          </Key>
+          <Property Name="SecurityId" Type="Int32" Nullable="false" />
+          <Property Name="BidPrice" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="OfferPrice" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SecurityType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOND" Relationship="Self.FK_PRICE_BOND" FromRole="PRICE" ToRole="BOND" />
+          <NavigationProperty Name="EQUITY" Relationship="Self.FK_PRICE_EQUITY" FromRole="PRICE" ToRole="EQUITY" />
+          <NavigationProperty Name="FUTURE" Relationship="Self.FK_PRICE_FUTURE" FromRole="PRICE" ToRole="FUTURE" />
+        </EntityType>
+        <EntityType Name="SECTOR">
+          <Key>
+            <PropertyRef Name="SectorId" />
+          </Key>
+          <Property Name="SectorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SectorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EQUITY" Relationship="Self.FK_EQUITY_SECTOR" FromRole="SECTOR" ToRole="EQUITY" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="PORTFOLIO" Relationship="Self.FK_PORTFOLIO_USER" FromRole="USER" ToRole="PORTFOLIO" />
+        </EntityType>
+        <Association Name="FK_POSITION_BOND">
+          <End Role="BOND" Type="Self.BOND" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOND">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_BOND">
+          <End Role="BOND" Type="Self.BOND" Multiplicity="1" />
+          <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOND">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="PRICE">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUITY_INDUSTRY">
+          <End Role="INDUSTRY" Type="Self.INDUSTRY" Multiplicity="1" />
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INDUSTRY">
+              <PropertyRef Name="IndustryId" />
+            </Principal>
+            <Dependent Role="EQUITY">
+              <PropertyRef Name="IndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUITY_SECTOR">
+          <End Role="SECTOR" Type="Self.SECTOR" Multiplicity="1" />
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SECTOR">
+              <PropertyRef Name="SectorId" />
+            </Principal>
+            <Dependent Role="EQUITY">
+              <PropertyRef Name="SectorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_EQUITY">
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUITY">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_EQUITY">
+          <End Role="EQUITY" Type="Self.EQUITY" Multiplicity="1" />
+          <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUITY">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="PRICE">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_FUTURE">
+          <End Role="FUTURE" Type="Self.FUTURE" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUTURE">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRICE_FUTURE">
+          <End Role="FUTURE" Type="Self.FUTURE" Multiplicity="1" />
+          <End Role="PRICE" Type="Self.PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUTURE">
+              <PropertyRef Name="SecurityId" />
+            </Principal>
+            <Dependent Role="PRICE">
+              <PropertyRef Name="SecurityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PORTFOLIO_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="PORTFOLIO" Type="Self.PORTFOLIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PORTFOLIO">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_PORTFOLIO">
+          <End Role="PORTFOLIO" Type="Self.PORTFOLIO" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTFOLIO">
+              <PropertyRef Name="PortfolioId" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="PortfolioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PortfolioManagerEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOND" EntityType="Self.BOND" />
+          <EntitySet Name="EQUITY" EntityType="Self.EQUITY" />
+          <EntitySet Name="FUTURE" EntityType="Self.FUTURE" />
+          <EntitySet Name="INDUSTRY" EntityType="Self.INDUSTRY" />
+          <EntitySet Name="PORTFOLIO" EntityType="Self.PORTFOLIO" />
+          <EntitySet Name="POSITION" EntityType="Self.POSITION" />
+          <EntitySet Name="PRICE" EntityType="Self.PRICE" />
+          <EntitySet Name="SECTOR" EntityType="Self.SECTOR" />
+          <EntitySet Name="USER" EntityType="Self.USER" />
+          <AssociationSet Name="FK_POSITION_BOND" Association="Self.FK_POSITION_BOND">
+            <End Role="BOND" EntitySet="BOND" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRICE_BOND" Association="Self.FK_PRICE_BOND">
+            <End Role="BOND" EntitySet="BOND" />
+            <End Role="PRICE" EntitySet="PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUITY_INDUSTRY" Association="Self.FK_EQUITY_INDUSTRY">
+            <End Role="INDUSTRY" EntitySet="INDUSTRY" />
+            <End Role="EQUITY" EntitySet="EQUITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUITY_SECTOR" Association="Self.FK_EQUITY_SECTOR">
+            <End Role="SECTOR" EntitySet="SECTOR" />
+            <End Role="EQUITY" EntitySet="EQUITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_EQUITY" Association="Self.FK_POSITION_EQUITY">
+            <End Role="EQUITY" EntitySet="EQUITY" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRICE_EQUITY" Association="Self.FK_PRICE_EQUITY">
+            <End Role="EQUITY" EntitySet="EQUITY" />
+            <End Role="PRICE" EntitySet="PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_FUTURE" Association="Self.FK_POSITION_FUTURE">
+            <End Role="FUTURE" EntitySet="FUTURE" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRICE_FUTURE" Association="Self.FK_PRICE_FUTURE">
+            <End Role="FUTURE" EntitySet="FUTURE" />
+            <End Role="PRICE" EntitySet="PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PORTFOLIO_USER" Association="Self.FK_PORTFOLIO_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PORTFOLIO" EntitySet="PORTFOLIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_PORTFOLIO" Association="Self.FK_POSITION_PORTFOLIO">
+            <End Role="PORTFOLIO" EntitySet="PORTFOLIO" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PortfolioModelStoreContainer" CdmEntityContainer="PortfolioManagerEntity">
+          <EntitySetMapping Name="BOND">
+            <EntityTypeMapping TypeName="PortfolioModel.BOND">
+              <MappingFragment StoreEntitySet="BOND">
+                <ScalarProperty Name="Issuer" ColumnName="Issuer" />
+                <ScalarProperty Name="Coupon" ColumnName="Coupon" />
+                <ScalarProperty Name="MatMonth" ColumnName="MatMonth" />
+                <ScalarProperty Name="MatYear" ColumnName="MatYear" />
+                <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUITY">
+            <EntityTypeMapping TypeName="PortfolioModel.EQUITY">
+              <MappingFragment StoreEntitySet="EQUITY">
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IPOyear" ColumnName="IPOyear" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+                <ScalarProperty Name="Quote" ColumnName="Quote" />
+                <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FUTURE">
+            <EntityTypeMapping TypeName="PortfolioModel.FUTURE">
+              <MappingFragment StoreEntitySet="FUTURE">
+                <ScalarProperty Name="FutureId" ColumnName="FutureId" />
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MatDate" ColumnName="MatDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ClrAlias" ColumnName="ClrAlias" />
+                <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INDUSTRY">
+            <EntityTypeMapping TypeName="PortfolioModel.INDUSTRY">
+              <MappingFragment StoreEntitySet="INDUSTRY">
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PORTFOLIO">
+            <EntityTypeMapping TypeName="PortfolioModel.PORTFOLIO">
+              <MappingFragment StoreEntitySet="PORTFOLIO">
+                <ScalarProperty Name="PortfolioName" ColumnName="PortfolioName" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSITION">
+            <EntityTypeMapping TypeName="PortfolioModel.POSITION">
+              <MappingFragment StoreEntitySet="POSITION">
+                <ScalarProperty Name="PositionType" ColumnName="PositionType" />
+                <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRICE">
+            <EntityTypeMapping TypeName="PortfolioModel.PRICE">
+              <MappingFragment StoreEntitySet="PRICE">
+                <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SecurityType" ColumnName="SecurityType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SECTOR">
+            <EntityTypeMapping TypeName="PortfolioModel.SECTOR">
+              <MappingFragment StoreEntitySet="SECTOR">
+                <ScalarProperty Name="SectorName" ColumnName="SectorName" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="PortfolioModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

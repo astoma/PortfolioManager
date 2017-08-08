@@ -10,6 +10,7 @@
     <Property Name="MatYear" Type="Int32" Nullable="false" />
     <Property Name="SecurityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_BOND" FromRole="BOND" ToRole="POSITION" />
+    <NavigationProperty Name="PRICE" Relationship="PortfolioModel.FK_PRICE_BOND" FromRole="BOND" ToRole="PRICE" />
   </EntityType>
   <EntityType Name="EQUITY">
     <Key>
@@ -25,6 +26,7 @@
     <NavigationProperty Name="INDUSTRY" Relationship="Self.FK_EQUITY_INDUSTRY" FromRole="EQUITY" ToRole="INDUSTRY" />
     <NavigationProperty Name="SECTOR" Relationship="Self.FK_EQUITY_SECTOR" FromRole="EQUITY" ToRole="SECTOR" />
     <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_EQUITY" FromRole="EQUITY" ToRole="POSITION" />
+    <NavigationProperty Name="PRICE" Relationship="PortfolioModel.FK_PRICE_EQUITY" FromRole="EQUITY" ToRole="PRICE" />
   </EntityType>
   <EntityType Name="FUTURE">
     <Key>
@@ -39,6 +41,7 @@
     <Property Name="ClrAlias" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SecurityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_FUTURE" FromRole="FUTURE" ToRole="POSITION" />
+    <NavigationProperty Name="PRICE" Relationship="PortfolioModel.FK_PRICE_FUTURE" FromRole="FUTURE" ToRole="PRICE" />
   </EntityType>
   <EntityType Name="INDUSTRY">
     <Key>
@@ -82,6 +85,10 @@
     <Property Name="OfferPrice" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_PRICE" FromRole="PRICE" ToRole="POSITION" />
+    <Property Name="SecurityType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BOND" Relationship="PortfolioModel.FK_PRICE_BOND" FromRole="PRICE" ToRole="BOND" />
+    <NavigationProperty Name="EQUITY" Relationship="PortfolioModel.FK_PRICE_EQUITY" FromRole="PRICE" ToRole="EQUITY" />
+    <NavigationProperty Name="FUTURE" Relationship="PortfolioModel.FK_PRICE_FUTURE" FromRole="PRICE" ToRole="FUTURE" />
   </EntityType>
   <EntityType Name="SECTOR">
     <Key>
@@ -241,5 +248,53 @@
       <End Role="PRICE" EntitySet="PRICE" />
       <End Role="POSITION" EntitySet="POSITION" />
     </AssociationSet>
+    <AssociationSet Name="FK_PRICE_BOND" Association="PortfolioModel.FK_PRICE_BOND">
+      <End Role="BOND" EntitySet="BOND" />
+      <End Role="PRICE" EntitySet="PRICE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRICE_EQUITY" Association="PortfolioModel.FK_PRICE_EQUITY">
+      <End Role="EQUITY" EntitySet="EQUITY" />
+      <End Role="PRICE" EntitySet="PRICE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRICE_FUTURE" Association="PortfolioModel.FK_PRICE_FUTURE">
+      <End Role="FUTURE" EntitySet="FUTURE" />
+      <End Role="PRICE" EntitySet="PRICE" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_PRICE_BOND">
+    <End Type="PortfolioModel.BOND" Role="BOND" Multiplicity="1" />
+    <End Type="PortfolioModel.PRICE" Role="PRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOND">
+        <PropertyRef Name="SecurityId" />
+      </Principal>
+      <Dependent Role="PRICE">
+        <PropertyRef Name="SecurityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRICE_EQUITY">
+    <End Type="PortfolioModel.EQUITY" Role="EQUITY" Multiplicity="1" />
+    <End Type="PortfolioModel.PRICE" Role="PRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EQUITY">
+        <PropertyRef Name="SecurityId" />
+      </Principal>
+      <Dependent Role="PRICE">
+        <PropertyRef Name="SecurityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRICE_FUTURE">
+    <End Type="PortfolioModel.FUTURE" Role="FUTURE" Multiplicity="1" />
+    <End Type="PortfolioModel.PRICE" Role="PRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FUTURE">
+        <PropertyRef Name="SecurityId" />
+      </Principal>
+      <Dependent Role="PRICE">
+        <PropertyRef Name="SecurityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

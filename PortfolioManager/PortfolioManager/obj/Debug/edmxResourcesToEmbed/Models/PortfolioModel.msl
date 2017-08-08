@@ -70,6 +70,7 @@
     <EntitySetMapping Name="PRICE">
       <EntityTypeMapping TypeName="PortfolioModel.PRICE">
         <MappingFragment StoreEntitySet="PRICE">
+          <ScalarProperty Name="SecurityType" ColumnName="SecurityType" />
           <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
           <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
           <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />

@@ -12,14 +12,13 @@ namespace PortfolioManager.Controllers
 {
     public class UserController : Controller
     {
-        private PortfolioEntities db = new PortfolioEntities();
+        private PortfolioManagerEntity db = new PortfolioManagerEntity();
 
         // GET: User
         public ActionResult Index()
         {
             return View(db.USER.ToList());
         }
-
 
         // GET: User/Details/5
         public ActionResult Details(int? id)
@@ -124,7 +123,5 @@ namespace PortfolioManager.Controllers
             }
             base.Dispose(disposing);
         }
-
-
     }
 }

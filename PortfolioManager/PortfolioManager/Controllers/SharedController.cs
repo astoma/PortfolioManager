@@ -21,7 +21,7 @@ namespace PortfolioManager.Controllers
                     ViewBag.Message = "Your password is invalid.";
                     break;
                 case 3:
-                    ViewBag.Message = "NETWORK Error, can not connect to DB.";
+                    ViewBag.Message = "OOOOOOOps!! (T_T) NETWORK Error, can not connect to DB.";
                     break;
             }
             return View();

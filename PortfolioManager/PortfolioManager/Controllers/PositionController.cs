@@ -12,12 +12,12 @@ namespace PortfolioManager.Controllers
 {
     public class PositionController : Controller
     {
-        private PortfolioEntities db = new PortfolioEntities();
+        private PortfolioManagerEntity db = new PortfolioManagerEntity();
 
         // GET: Position
         public ActionResult Index()
         {
-            var pOSITION = db.POSITION.Include(p => p.BOND).Include(p => p.EQUITY).Include(p => p.FUTURE).Include(p => p.PORTFOLIO).Include(p => p.PRICE);
+            var pOSITION = db.POSITION.Include(p => p.BOND).Include(p => p.EQUITY).Include(p => p.FUTURE).Include(p => p.PORTFOLIO);
             return View(pOSITION.ToList());
         }
 
@@ -43,7 +43,6 @@ namespace PortfolioManager.Controllers
             ViewBag.SecurityId = new SelectList(db.EQUITY, "SecurityId", "Symbol");
             ViewBag.SecurityId = new SelectList(db.FUTURE, "SecurityId", "FutureId");
             ViewBag.PortfolioId = new SelectList(db.PORTFOLIO, "PortfolioId", "PortfolioName");
-            ViewBag.SecurityId = new SelectList(db.PRICE, "SecurityId", "SecurityId");
             return View();
         }
 
@@ -65,7 +64,6 @@ namespace PortfolioManager.Controllers
             ViewBag.SecurityId = new SelectList(db.EQUITY, "SecurityId", "Symbol", pOSITION.SecurityId);
             ViewBag.SecurityId = new SelectList(db.FUTURE, "SecurityId", "FutureId", pOSITION.SecurityId);
             ViewBag.PortfolioId = new SelectList(db.PORTFOLIO, "PortfolioId", "PortfolioName", pOSITION.PortfolioId);
-            ViewBag.SecurityId = new SelectList(db.PRICE, "SecurityId", "SecurityId", pOSITION.SecurityId);
             return View(pOSITION);
         }
 
@@ -85,7 +83,6 @@ namespace PortfolioManager.Controllers
             ViewBag.SecurityId = new SelectList(db.EQUITY, "SecurityId", "Symbol", pOSITION.SecurityId);
             ViewBag.SecurityId = new SelectList(db.FUTURE, "SecurityId", "FutureId", pOSITION.SecurityId);
             ViewBag.PortfolioId = new SelectList(db.PORTFOLIO, "PortfolioId", "PortfolioName", pOSITION.PortfolioId);
-            ViewBag.SecurityId = new SelectList(db.PRICE, "SecurityId", "SecurityId", pOSITION.SecurityId);
             return View(pOSITION);
         }
 
@@ -106,7 +103,6 @@ namespace PortfolioManager.Controllers
             ViewBag.SecurityId = new SelectList(db.EQUITY, "SecurityId", "Symbol", pOSITION.SecurityId);
             ViewBag.SecurityId = new SelectList(db.FUTURE, "SecurityId", "FutureId", pOSITION.SecurityId);
             ViewBag.PortfolioId = new SelectList(db.PORTFOLIO, "PortfolioId", "PortfolioName", pOSITION.PortfolioId);
-            ViewBag.SecurityId = new SelectList(db.PRICE, "SecurityId", "SecurityId", pOSITION.SecurityId);
             return View(pOSITION);
         }
 

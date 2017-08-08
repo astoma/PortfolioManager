@@ -3,53 +3,51 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="container">
+    <h2>Index</h2>
 
-@{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Issuer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coupon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MatMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MatYear)
+            </th>
+            <th></th>
+        </tr>
 
-<h2>Index</h2>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issuer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Coupon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatMonth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatYear)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SecurityId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SecurityId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SecurityId })
+                </td>
+            </tr>
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Issuer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Coupon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MatMonth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MatYear)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Issuer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Coupon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatMonth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatYear)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SecurityId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SecurityId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SecurityId })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>

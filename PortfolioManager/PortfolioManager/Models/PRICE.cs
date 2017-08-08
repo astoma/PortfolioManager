@@ -14,18 +14,14 @@ namespace PortfolioManager.Models
     
     public partial class PRICE
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PRICE()
-        {
-            this.POSITION = new HashSet<POSITION>();
-        }
-    
         public int SecurityId { get; set; }
         public decimal BidPrice { get; set; }
         public decimal OfferPrice { get; set; }
         public System.DateTime Date { get; set; }
+        public string SecurityType { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<POSITION> POSITION { get; set; }
+        public virtual BOND BOND { get; set; }
+        public virtual EQUITY EQUITY { get; set; }
+        public virtual FUTURE FUTURE { get; set; }
     }
 }

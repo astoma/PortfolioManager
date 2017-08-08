@@ -18,6 +18,7 @@ namespace PortfolioManager.Models
         public EQUITY()
         {
             this.POSITION = new HashSet<POSITION>();
+            this.PRICE = new HashSet<PRICE>();
         }
     
         public string Symbol { get; set; }
@@ -32,5 +33,7 @@ namespace PortfolioManager.Models
         public virtual SECTOR SECTOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<POSITION> POSITION { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRICE> PRICE { get; set; }
     }
 }
