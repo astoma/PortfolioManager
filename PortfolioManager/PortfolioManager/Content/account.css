@@ -1,0 +1,45 @@
+﻿  .AccountHomeBody{
+        width:100%;
+        height:640px;
+        margin:0px;
+        padding:0px;
+        float:left;
+        background-image: url("/Images/home6.jpg");
+    }
+
+    .AccountFormPanel{
+        width: 42%;
+        margin:0 auto;
+        text-align:center;
+        opacity:0.9;
+        margin-top:100px;
+        background-color:#EEE;
+        border: none;
+        border-top:none;
+    }
+
+    .accountSubmit
+    {
+        float:right;
+        margin-right:8%;
+    }
+    .form-horizontal .form-group{
+        margin-left:10px;
+        margin-right:0px;
+    }
+    .form-group{
+        margin:0 auto;
+        padding-top:10px;
+        margin-bottom:10px;
+        margin-top:10px;
+    }
+
+    .accountTextBox{
+        margin-left:0px;
+    }
+
+    .rememberMe{
+        float:left;
+        text-align:left;
+        margin-left:35px;
+    }

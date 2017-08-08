@@ -9,10 +9,11 @@
 
 namespace PortfolioManager.Models
 {
+    using Microsoft.AspNet.Identity;
     using System;
     using System.Collections.Generic;
-    
-    public partial class USER
+
+    public partial class USER:IUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USER()
@@ -29,5 +30,13 @@ namespace PortfolioManager.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PORTFOLIO> PORTFOLIO { get; set; }
+
+        public string Id
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

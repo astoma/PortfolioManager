@@ -20,6 +20,7 @@ namespace PortfolioManager.Controllers
             return View(db.USER.ToList());
         }
 
+
         // GET: User/Details/5
         public ActionResult Details(int? id)
         {

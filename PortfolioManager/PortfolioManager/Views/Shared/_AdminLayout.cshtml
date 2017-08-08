@@ -22,20 +22,6 @@
              </div>
             @Html.Partial("_LoginPartial")
             <ul class="nav navbar-nav">
-                @*<li class="dropdown">
-
-                    @Html.ActionLink("Securities", "Index", "Home", new { area = "<span class='caret'></span>" }, new { style = "font-size: 18px", @class = "dropdown-toggle", data_toggle = "dropdown", role = "button", aria_haspopup = "true", aria_expanded = "false" })
-
-                    <ul class="dropdown-menu">
-                        <li>
-                            @Html.ActionLink("Manage Market", "About", "Home")
-                        </li>
-                        <li>
-                            <a href="#">Update price</a>
-                        </li>
-                    </ul>
-
-                </li>*@
                 <li>@Html.ActionLink("Portfolio", "Index", "Portfolio")</li>
                 <li>@Html.ActionLink("Securities", "Index", "Securities")</li> 
                 <li>@Html.ActionLink("Fund Manager", "Index", "FundManager")</li>
@@ -44,15 +30,13 @@
             </ul>
         </div>
     </div>
+    @RenderBody()
+
    
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <br /><br /><br /><br />
-        <footer>
-            <p>&copy; @DateTime.Now.Year -CITI</p>
-        </footer>
-    </div>
+  
+    <footer>
+        <p>&copy; @DateTime.Now.Year -CITI</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

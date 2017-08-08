@@ -71,7 +71,12 @@ namespace PortfolioManager.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} at leat {2} character。", MinimumLength = 6)]
+        [StringLength(40, ErrorMessage = "{0} at least {2} characters", MinimumLength =3)]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} at least {2} characters。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

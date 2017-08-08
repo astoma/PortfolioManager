@@ -3,54 +3,59 @@
 @{
     ViewBag.Title = "Login";
 }
+@Styles.Render("~/Content/account.css")
 
-<h2>@ViewBag.Title。</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+<div class="AccountHomeBody">
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.AntiForgeryToken()
-                <h4>Use local acount to Login.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
+            @Html.AntiForgeryToken()
+            <div class="panel panel-primary AccountFormPanel">
+                <div class="panel-heading">
+                    <h2>Login</h2>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                <div class="panel-body">
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9 accountTextBox">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    <div class="form-group ">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9 accountTextBox">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="Email"></label>
+                        <div  class="col-md-9 rememberMe">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="accountSubmit">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                   
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Login" class="btn btn-default" />
-                    </div>
+                    <div style="float:left">@Html.ActionLink("No account? Register", "Register")</div>
+                    <div style="float:right">@Html.ActionLink("Forget Password?", "ForgotPassword")</div>
                 </div>
-                <p>
-                    @Html.ActionLink("No account? Register", "Register")
-                </p>
-                
-                <p>
-                    @Html.ActionLink("Forget Password?", "ForgotPassword")
-                </p>
-            }
-        </section>
-    </div>
+            </div>
+        }
+    </section>
+
 </div>
 
 @section Scripts {
