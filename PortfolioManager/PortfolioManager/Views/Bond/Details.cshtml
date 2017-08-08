@@ -4,47 +4,49 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <h2>Details</h2>
 
-<div>
-    <h4>BOND</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Issuer)
-        </dt>
+    <div>
+        <h4>BOND</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Issuer)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Issuer)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Issuer)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Coupon)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Coupon)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Coupon)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Coupon)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MatMonth)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MatMonth)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MatMonth)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MatMonth)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MatYear)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MatYear)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MatYear)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MatYear)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.SecurityId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SecurityId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

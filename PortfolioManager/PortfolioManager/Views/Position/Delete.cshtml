@@ -4,69 +4,72 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="container">
+    <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>POSITION</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PositionType)
-        </dt>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>POSITION</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PositionType)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PositionType)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PositionType)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BOND.Issuer)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.BOND.Issuer)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BOND.Issuer)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.BOND.Issuer)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EQUITY.Symbol)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.EQUITY.Symbol)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EQUITY.Symbol)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EQUITY.Symbol)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FUTURE.FutureId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.FUTURE.FutureId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FUTURE.FutureId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FUTURE.FutureId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PORTFOLIO.PortfolioName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PORTFOLIO.PortfolioName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PORTFOLIO.PortfolioName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PORTFOLIO.PortfolioName)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
 </div>

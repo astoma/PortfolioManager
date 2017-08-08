@@ -4,31 +4,33 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <h2>Details</h2>
 
-<div>
-    <h4>PORTFOLIO</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PortfolioName)
-        </dt>
+    <div>
+        <h4>PORTFOLIO</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PortfolioName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PortfolioName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PortfolioName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.USER.UserName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.USER.UserName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.USER.UserName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.USER.UserName)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PortfolioId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PortfolioId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>

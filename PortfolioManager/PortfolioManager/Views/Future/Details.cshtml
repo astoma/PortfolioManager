@@ -4,71 +4,73 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <h2>Details</h2>
 
-<div>
-    <h4>FUTURE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FutureId)
-        </dt>
+    <div>
+        <h4>FUTURE</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FutureId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FutureId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FutureId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Exchange)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Exchange)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Exchange)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Exchange)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Symbol)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Symbol)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Symbol)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Symbol)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MatDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MatDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MatDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MatDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ClrAlias)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ClrAlias)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ClrAlias)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ClrAlias)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SecurityId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.SecurityId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>
